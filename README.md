@@ -29,7 +29,7 @@
 | item_category_id  | integer    | null: false                    |
 | item_condition_id | integer    | null: false                    |
 | shipping_fee_id   | integer    | null: false                    |
-| send_area_id      | integer    | null: false                    |
+| prefecture_id     | integer    | null: false                    |
 | send_day_id       | integer    | null: false                    |
 | price             | integer    | null: false                    |
 
@@ -50,7 +50,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :address
+- has_one :address
 
 ## address テーブル
 
