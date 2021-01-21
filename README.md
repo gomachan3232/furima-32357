@@ -24,10 +24,10 @@
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
 | user              | references | null: false, foreign_key: true |
-| item_name         | string     | null: false                    |
-| item_info         | text       | null: false                    |
-| item_category_id  | integer    | null: false                    |
-| item_condition_id | integer    | null: false                    |
+| name              | string     | null: false                    |
+| info              | text       | null: false                    |
+| category_id       | integer    | null: false                    |
+| condition_id      | integer    | null: false                    |
 | shipping_fee_id   | integer    | null: false                    |
 | prefecture_id     | integer    | null: false                    |
 | send_day_id       | integer    | null: false                    |
@@ -52,7 +52,7 @@
 - belongs_to :item
 - has_one :address
 
-## address テーブル
+## addresses テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
