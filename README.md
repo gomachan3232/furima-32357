@@ -26,17 +26,17 @@
 | user              | references | null: false, foreign_key: true |
 | item_name         | string     | null: false                    |
 | item_info         | text       | null: false                    |
-| item_category_id  | string     | null: false                    |
-| item_condition_id | string     | null: false                    |
-| shipping_fee_id   | string     | null: false                    |
-| send_area_id      | string     | null: false                    |
-| send_day_id       | string     | null: false                    |
+| item_category_id  | integer    | null: false                    |
+| item_condition_id | integer    | null: false                    |
+| shipping_fee_id   | integer    | null: false                    |
+| send_area_id      | integer    | null: false                    |
+| send_day_id       | integer    | null: false                    |
 | price             | integer    | null: false                    |
 
 ### Association
 
 - belongs_to :user
-- has_many :buys
+- has_one :buy
 
 
 ## buys テーブル
@@ -56,6 +56,7 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
+| buy            | references | null: false, foreign_key: true |
 | post_code      | string     | null: false                    |
 | prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
