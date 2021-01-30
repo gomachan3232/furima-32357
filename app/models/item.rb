@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :prefecture
   belongs_to :send_day
-  belongs_to :user
+  belongs_to :user, optional: true
   has_one :buy
   has_one_attached :image
 
@@ -20,6 +20,6 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :send_day_id
     end
-    validates :price, inclusion: { in: 300..9_999_999 }
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
 end
