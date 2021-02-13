@@ -10,5 +10,7 @@ class Address < ApplicationRecord
     validates :address
     validates :phone_number
   end
+  validate :building
+  
   
 end

@@ -1,5 +1,6 @@
 function calculation (){
   const articleText = document.getElementById("item-price");
+  if (!articleText){ return false;}
   articleText.addEventListener("keyup", () => { 
     const itemPrice = document.getElementById("item-price");
     const addTaxPrice = document.getElementById("add-tax-price");
