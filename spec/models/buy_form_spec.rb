@@ -7,7 +7,7 @@ RSpec.describe BuyForm, type: :model do
 
   describe '商品購入機能' do
     context '商品購入できるとき' do
-      it 'post_code,prefecture_id,city,address,phone_number,tokenがあれば購入できる' do
+      it 'post_code,prefecture_id,city,address,phone_number,token,item_id,user_idがあれば購入できる' do
         expect(@buy_form).to be_valid
       end
       it 'post_codeが3文字ハイフン4文字だと購入できる' do
@@ -65,6 +65,16 @@ RSpec.describe BuyForm, type: :model do
         @buy_form.token = ''
         @buy_form.valid?
         expect(@buy_form.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'item_idがないと購入できない' do
+        @buy_form.item_id = ''
+        @buy_form.valid?
+        expect(@buy_form.errors.full_messages).to include("Item can't be blank")
+      end
+      it 'user_idがないと購入できない' do
+        @buy_form.user_id = ''
+        @buy_form.valid?
+        expect(@buy_form.errors.full_messages).to include("User can't be blank")
       end
     end
   end

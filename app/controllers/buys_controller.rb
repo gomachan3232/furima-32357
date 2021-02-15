@@ -1,7 +1,8 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :item_find, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
     elsif @item.buy.present?
@@ -13,7 +14,6 @@ class BuysController < ApplicationController
 
   def create
     @buy_form = BuyForm.new(buy_params)
-    @item = Item.find(params[:item_id])
     if @buy_form.valid?
       pay_item
       @buy_form.save
@@ -26,7 +26,7 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.require(:buy_form).permit(:post_code, :prefecture_id, :city, :address, :building, :phone_number, :item_id, :user_id).merge(
+    params.require(:buy_form).permit(:post_code, :prefecture_id, :city, :address, :building, :phone_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
@@ -38,5 +38,9 @@ class BuysController < ApplicationController
       card: buy_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end

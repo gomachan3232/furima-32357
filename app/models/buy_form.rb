@@ -9,8 +9,9 @@ class BuyForm
     validates :address
     validates :phone_number, format: { with: /\A\d{11}\z/ }
     validates :token
+    validates :item_id
+    validates :user_id
   end
-  validate :building
 
   def save
     @buy = Buy.create(item_id: item_id, user_id: user_id)
