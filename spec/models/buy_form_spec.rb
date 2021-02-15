@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe BuyForm, type: :model do
   before do
-    @buy_form = FactoryBot.build(:buy_form)
+    @item = FactoryBot.create(:item)
+    @user = FactoryBot.create(:user)
+    @buy_form = FactoryBot.build(:buy_form, item_id: @item.id, user_id: @user.id)
+    sleep 0.1
   end
 
   describe '商品購入機能' do
@@ -14,7 +17,12 @@ RSpec.describe BuyForm, type: :model do
         @buy_form.post_code = '123-4567'
         expect(@buy_form).to be_valid
       end
+      it 'buildingがなくても購入できる' do
+        @buy_form.building = ''
+        expect(@buy_form).to be_valid
+      end
     end
+
     context '商品購入できないとき' do
       it 'post_codeがないと購入できない' do
         @buy_form.post_code = ''
