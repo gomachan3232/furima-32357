@@ -3,9 +3,7 @@ class BuysController < ApplicationController
   before_action :item_find, only: [:index, :create]
 
   def index
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    elsif @item.buy.present?
+    if current_user.id == @item.user_id || @item.buy.present?
       redirect_to root_path
     else
       @buy_form = BuyForm.new
