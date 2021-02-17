@@ -69,6 +69,11 @@ RSpec.describe BuyForm, type: :model do
         @buy_form.valid?
         expect(@buy_form.errors.full_messages).to include('Phone number is invalid')
       end
+      it 'phone_numberが英数混合だと購入できない' do
+        @buy_form.phone_number = '0a2b3c4d5e6'
+        @buy_form.valid?
+        expect(@buy_form.errors.full_messages).to include('Phone number is invalid')
+      end
       it 'tokenがないと購入できない' do
         @buy_form.token = ''
         @buy_form.valid?

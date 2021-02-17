@@ -4,6 +4,7 @@ FactoryBot.define do
     prefecture_id  { 2 }
     city           { 'テスト市テスト区' }
     address        { 'テスト１−１' }
+    building       { 'テストビル1-11' }
     phone_number   { '09012345678' }
     token          { 'tok_abcdefghijk00000000000000000' }
   end
