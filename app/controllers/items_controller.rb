@@ -35,9 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user_id != current_user.id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if @item.user_id != current_user.id
     @item = Item.destroy(params[:id])
     redirect_to root_path
   end
@@ -54,8 +52,6 @@ class ItemsController < ApplicationController
   end
 
   def item_user_correct
-    if @item.user_id != current_user.id || @item.buy.present?
-    redirect_to action: :index
-    end
+    redirect_to action: :index if @item.user_id != current_user.id || @item.buy.present?
   end
 end
